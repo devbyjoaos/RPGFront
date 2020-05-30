@@ -7,12 +7,13 @@ import { DaleComponent } from './dale/dale.component';
 const routes: Routes = [
   {
   path: '',
-  component: LoginComponent
-},
-{
-  path: 'dale',
-  component: DaleComponent,
-}
+  component: LoginComponent,
+  },
+  {
+    path: 'dale',
+    component: DaleComponent,
+  }
+
 ];
 
 @NgModule({
