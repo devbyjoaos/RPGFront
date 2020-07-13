@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div style="background-image: url(https://i.imgur.com/P7TgD2J.jpg) ; height: 100%; display: flex; align-items: center; justify-content: center;">
+<mat-card style="background-color: white;">
+    <mat-card-title style="opacity: 1 !important; text-align: center; margin-bottom: 10px; color: coral;">Login</mat-card-title>
+    <mat-card-content style="opacity: 1 !important; color: black;">
+      <div style="font-size: 10px; text-align: center;">Náo tem uma conta? <a style="color: black;" href="dale">clique aqui</a></div>
+      <div style="font-size: 10px; text-align: center; margin-bottom: 10px;">Cadastre-se agora grátis</div>
+
+        <form>
+          <div class="row" style="justify-content: center; display: flex;">
+        <mat-form-field style="width: 80%;">
+            <mat-label style="justify-content: center; display: flex;">username</mat-label>
+            <input matInput [(ngModel)]="loginDto.nickname" name="nickname">
+        </mat-form-field>
+      </div>
+      <div class="row" style="justify-content: center; display: flex;">
+        <mat-form-field style="width: 80%;" floatLabel="never">
+            <mat-label style="justify-content: center; display: flex;">password</mat-label>
+            <input matInput type="password" [(ngModel)]="loginDto.password" name="password">
+        </mat-form-field>
+      </div>
+    </form>
+    <div class="row" style="justify-content: center; display: flex;">
+    <button mat-raised-button style="width: 80%" color="warn" (click)="loginClick()">Entrar</button>
+  </div>
+    </mat-card-content>
+</mat-card>
+</div>

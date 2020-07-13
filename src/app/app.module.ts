@@ -7,6 +7,8 @@ import { LoginComponent } from './login/login.component';
 import { DaleComponent } from './dale/dale.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentsModule } from './components/components.module';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginService } from './services/login.service';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,10 @@ import { ComponentsModule } from './components/components.module';
     ComponentsModule,
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
