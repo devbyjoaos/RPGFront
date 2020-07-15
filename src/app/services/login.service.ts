@@ -16,6 +16,6 @@ export class LoginService  {
   }
 
   public findByIdOrDenomination(filter: LoginDto): Observable<boolean> {
-    return this.httpClient.post<boolean>('http://localhost:8080/login/v1/login', filter);
+    return this.httpClient.post<boolean>('http://localhost:8080/autenticar', filter);
   }
 }
