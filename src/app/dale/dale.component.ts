@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DaleService } from './services/dale.service';
 @Component({
   selector: 'app-dale',
   templateUrl: './dale.component.html',
@@ -6,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DaleComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private daleService: DaleService
+  ) { }
 
   ngOnInit(): void {
+    this.logout();
+  }
+
+  public logout(){
+    this.daleService.ver().subscribe(
+      result => {
+        console.log(result);
+      }
+    );
   }
 
 }

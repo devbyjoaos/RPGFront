@@ -8,22 +8,24 @@ import { DaleComponent } from './dale/dale.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentsModule } from './components/components.module';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginService } from './services/login.service';
+import { LoginService } from './auth/services/login.service';
+import { AuthModule } from './auth/auth.module';
+import { DaleService } from './dale/services/dale.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    DaleComponent
+    LoginComponent
   ],
   imports: [
     ComponentsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AuthModule
   ],
-  providers: [LoginService],
+  providers: [LoginService, DaleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

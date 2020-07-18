@@ -1,17 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { DaleComponent } from './dale/dale.component';
+import { AuthGuard } from './auth/guards/auth.guard';
+import { RandomGuard } from './auth/guards/random.guard';
 
 
 const routes: Routes = [
+  {path: '', pathMatch: 'full', redirectTo: '/login'},
   {
-  path: '',
+  path: 'login',
   component: LoginComponent,
+  canActivate: [AuthGuard]
   },
   {
     path: 'dale',
-    component: DaleComponent,
+    loadChildren: () => import('./dale/dale.module').then(m => m.DaleModule),
+    canActivate: [RandomGuard],
+    canLoad: [RandomGuard]
   }
 
 ];

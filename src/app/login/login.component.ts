@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginDto } from './login-objects';
-import { LoginService } from '../services/login.service';
+
 import { Router } from '@angular/router';
+import { LoginService } from '../auth/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -21,10 +22,9 @@ export class LoginComponent implements OnInit {
   }
 
   loginClick(){
-    console.log(this.loginDto);
-    this.loginService.findByIdOrDenomination(this.loginDto).subscribe(
-      result =>{
-        if(result){
+    this.loginService.login(this.loginDto).subscribe(
+      result => {
+        if (result){
           this.router.navigate(['dale']);
         }
       }
