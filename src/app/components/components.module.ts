@@ -34,6 +34,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from '../login/login.component';
+import { LoginErrorComponent } from './dale/login-error.component';
 
 
 const MaterialModules = [
@@ -74,6 +76,7 @@ const MaterialModules = [
   FormsModule];
 
 @NgModule({
+  declarations: [LoginErrorComponent],
   imports: [MaterialModules],
   exports: [MaterialModules]
 })

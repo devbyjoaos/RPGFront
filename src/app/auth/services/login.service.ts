@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { LoginDto, Tokens } from 'src/app/login/login-objects';
+import { LoginDto, Tokens, LoginInfo, UserInfo } from 'src/app/login/login-objects';
 import { catchError, mapTo, tap } from 'rxjs/operators';
+import { logWarnings } from 'protractor/built/driverProviders';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { LoginErrorComponent } from 'src/app/components/dale/login-error.component';
 
 
 
@@ -23,10 +26,12 @@ export class LoginService  {
 
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
-  private loggedUser: string;
+  private readonly LOGGED_USER = 'LOGGED_USER';
+  private loggedUser: UserInfo;
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    public dialog: MatDialog
   ) {
     this.options.headers = new HttpHeaders()
       .set('no-error', 'true')
@@ -37,10 +42,11 @@ export class LoginService  {
   public login(user: LoginDto): Observable<boolean> {
     return this.httpClient.post<any>('http://localhost:8080/autenticar', user)
     .pipe(
-      tap(tokens => this.doLoginUser(user.nickname, tokens)),
+      tap(info => this.doLoginUser(info.userInfo , info.tokens)),
       mapTo(true),
       catchError(error => {
-        alert(error.error);
+        const dialogRef = this.dialog.open(LoginErrorComponent, {
+        });
         return of(false);
       })
     );
@@ -51,6 +57,7 @@ export class LoginService  {
   }
 
   public logout() {
+    this.doLogoutUser();
     return this.httpClient.post<any>('http://localhost:8080/sair', {
       refreshToken: this.getRefreshToken()
     }).pipe(
@@ -63,24 +70,34 @@ export class LoginService  {
     );
   }
 
-  public doLoginUser(nickname: string, tokens: Tokens){
-    this.loggedUser = nickname;
+  public doLoginUser(loginInfo: UserInfo, tokens: Tokens){
+    this.loggedUser = loginInfo;
+    this.storeLoggedUser(this.loggedUser);
     this.storeTokens(tokens);
   }
 
   public doLogoutUser() {
     this.loggedUser = null;
+    this.removeLoggedUser();
     this.removeTokens();
   }
 
   public storeTokens(tokens: Tokens) {
-    localStorage.setItem(this.JWT_TOKEN, tokens.token);
-    localStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken);
+    sessionStorage.setItem(this.JWT_TOKEN, tokens.token);
+    sessionStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken);
+  }
+
+  public storeLoggedUser(userInfo: UserInfo) {
+    sessionStorage.setItem(this.LOGGED_USER, JSON.stringify(userInfo));
+  }
+
+  public removeLoggedUser() {
+    sessionStorage.removeItem(this.LOGGED_USER);
   }
 
   public removeTokens() {
-    localStorage.removeItem(this.JWT_TOKEN);
-    localStorage.removeItem(this.JWT_TOKEN);
+    sessionStorage.removeItem(this.JWT_TOKEN);
+    sessionStorage.removeItem(this.REFRESH_TOKEN);
   }
 
   refreshToken() {
@@ -92,15 +109,15 @@ export class LoginService  {
   }
 
   private storeJwtToken(jwt: string) {
-    localStorage.setItem(this.JWT_TOKEN, jwt);
+    sessionStorage.setItem(this.JWT_TOKEN, jwt);
   }
 
   public getJwtToken(){
-    return localStorage.getItem(this.JWT_TOKEN);
+    return sessionStorage.getItem(this.JWT_TOKEN);
   }
 
   public getRefreshToken(){
-    return localStorage.getItem(this.REFRESH_TOKEN);
+    return sessionStorage.getItem(this.REFRESH_TOKEN);
   }
 
 }

@@ -9,3 +9,15 @@ export class Tokens {
   token: string;
   refreshToken: string;
 }
+
+export class UserInfo {
+  id: number;
+  nickname: string;
+  email: string;
+  name: string;
+}
+
+export class LoginInfo {
+  tokens: Tokens;
+  userInfo: UserInfo;
+}

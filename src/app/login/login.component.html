@@ -15,7 +15,7 @@
       <div class="row" style="justify-content: center; display: flex;">
         <mat-form-field style="width: 80%;" floatLabel="never">
             <mat-label style="justify-content: center; display: flex;">password</mat-label>
-            <input matInput type="password" [(ngModel)]="loginDto.password" name="password">
+            <input matInput type="password"  (keyup.enter)="loginClick()" [(ngModel)]="loginDto.password" name="password">
         </mat-form-field>
       </div>
     </form>
