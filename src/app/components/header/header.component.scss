@@ -1,0 +1,24 @@
+::ng-deep .mat-toolbar-row, .mat-toolbar-single-row {
+  height: 50px !important;
+}
+
+::ng-deep .mat-toolbar-multiple-rows {
+  min-height: 50px !important;
+}
+
+
+::ng-deep .mat-button-ripple.mat-ripple, .mat-button-focus-overlay {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+::ng-deep .mat-menu-panel {
+  max-height: 230px !important;
+  max-width: 498px !important;
+  background: #ffffff !important;
+}

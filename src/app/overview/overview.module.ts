@@ -2,21 +2,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule } from '@angular/common/http';
 
-import { DaleComponent } from './dale.component';
+import { OverviewComponent } from './overview.component';
 import { NgModule } from '@angular/core';
 import { ComponentsModule } from '../components/components.module';
-import { DaleService } from './services/dale.service';
-import { DaleRoutingModule } from './dale-routing.module';
+import { OverviewService } from './services/overview.service';
+import { DaleRoutingModule } from './overview-routing.module';
+import { HeaderComponent } from '../components/header/header.component';
 
 @NgModule({
   declarations: [
-    DaleComponent
+    OverviewComponent,
   ],
   imports: [
     ComponentsModule,
     DaleRoutingModule,
   ],
-  providers: [DaleService,
+  providers: [OverviewService,
   ],
 })
-export class DaleModule { }
+export class OverviewModule { }

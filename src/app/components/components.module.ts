@@ -35,7 +35,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from '../login/login.component';
-import { LoginErrorComponent } from './dale/login-error.component';
+import { LoginErrorComponent } from './login-error/login-error.component';
+import { HeaderComponent } from './header/header.component';
 
 
 const MaterialModules = [
@@ -76,8 +77,8 @@ const MaterialModules = [
   FormsModule];
 
 @NgModule({
-  declarations: [LoginErrorComponent],
+  declarations: [LoginErrorComponent, HeaderComponent],
   imports: [MaterialModules],
-  exports: [MaterialModules]
+  exports: [MaterialModules, HeaderComponent]
 })
 export class ComponentsModule { }

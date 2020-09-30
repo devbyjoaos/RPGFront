@@ -2,3 +2,61 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.success-snackbar {
+  background-color: #58d858;
+  color: #ffffff;
+
+  .mat-simple-snackbar::before {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    content: 'done';
+    padding-right: 5px;
+  }
+
+  span {
+    flex: 2;
+  }
+}
+
+.warn-snackbar {
+  background-color: #d8cb58;
+  color: #ffffff;
+
+  .mat-simple-snackbar::before {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    content: 'warning';
+    padding-right: 5px;
+  }
+
+  span {
+    flex: 2;
+  }
+}
+
+.error-snackbar {
+  background-color: #e43838;
+  color: #ffffff;
+
+  .mat-simple-snackbar::before {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    content: 'error';
+    padding-right: 5px;
+  }
+
+  span {
+    flex: 2;
+  }
+}
+
+a{
+ color: #4d5156!important;
+}

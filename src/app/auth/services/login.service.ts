@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { LoginDto, Tokens, LoginInfo, UserInfo } from 'src/app/login/login-objects';
+import { LoginDto, Tokens, LoginInfo, UserInfo, RegisterDto } from 'src/app/login/login-objects';
 import { catchError, mapTo, tap } from 'rxjs/operators';
 import { logWarnings } from 'protractor/built/driverProviders';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { LoginErrorComponent } from 'src/app/components/dale/login-error.component';
+import { LoginErrorComponent } from 'src/app/components/login-error/login-error.component';
+import { SnackBarService } from 'src/app/components/snackbar/snackbar.service';
 
 
 
@@ -31,7 +32,8 @@ export class LoginService  {
 
   constructor(
     private httpClient: HttpClient,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public snackbar: SnackBarService
   ) {
     this.options.headers = new HttpHeaders()
       .set('no-error', 'true')
@@ -45,8 +47,7 @@ export class LoginService  {
       tap(info => this.doLoginUser(info.userInfo , info.tokens)),
       mapTo(true),
       catchError(error => {
-        const dialogRef = this.dialog.open(LoginErrorComponent, {
-        });
+        this.snackbar.error('Usuário ou senha inválidos.');
         return of(false);
       })
     );
@@ -118,6 +119,14 @@ export class LoginService  {
 
   public getRefreshToken(){
     return sessionStorage.getItem(this.REFRESH_TOKEN);
+  }
+
+  public getLoggedUser(){
+    return JSON.parse(sessionStorage.getItem(this.LOGGED_USER));
+  }
+
+  public registerUser(registerDto: RegisterDto): Observable<void>{
+    return this.httpClient.post<void>('http://localhost:8080/registrar', registerDto);
   }
 
 }

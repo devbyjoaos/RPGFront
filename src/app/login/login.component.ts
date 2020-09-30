@@ -3,6 +3,7 @@ import { LoginDto } from './login-objects';
 
 import { Router } from '@angular/router';
 import { LoginService } from '../auth/services/login.service';
+import { SnackBarService } from '../components/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   logou: boolean;
   constructor(
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
+    private snackbar: SnackBarService
   ) { }
 
   ngOnInit(): void {
@@ -24,9 +26,10 @@ export class LoginComponent implements OnInit {
   loginClick(){
     this.loginService.login(this.loginDto).subscribe(
       result => {
-        if (result){
-          this.router.navigate(['dale']);
-        }
+          this.router.navigate(['inicio']);
+      },
+      error => {
+        this.snackbar.error('Usuário ou senha inválidos.');
       }
     );
 

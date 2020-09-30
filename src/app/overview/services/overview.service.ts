@@ -8,7 +8,7 @@ import { LoginDto} from 'src/app/login/login-objects';
 
 
 @Injectable({ providedIn: 'root' })
-export class DaleService {
+export class OverviewService {
 
   constructor(
     private httpClient: HttpClient

@@ -21,3 +21,10 @@ export class LoginInfo {
   tokens: Tokens;
   userInfo: UserInfo;
 }
+
+export class RegisterDto{
+  email: string;
+  name: string;
+  nickname: string;
+  password: string;
+}

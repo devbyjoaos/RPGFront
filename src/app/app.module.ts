@@ -4,18 +4,22 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { DaleComponent } from './dale/dale.component';
+import { OverviewComponent } from './overview/overview.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentsModule } from './components/components.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './auth/services/login.service';
 import { AuthModule } from './auth/auth.module';
-import { DaleService } from './dale/services/dale.service';
+import { OverviewService } from './overview/services/overview.service';
+import { RegisterComponent } from './login/register/register.component';
+import { CharacterComponent } from './user-settings/character/character.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     ComponentsModule,
@@ -25,7 +29,7 @@ import { DaleService } from './dale/services/dale.service';
     BrowserAnimationsModule,
     AuthModule
   ],
-  providers: [LoginService, DaleService],
+  providers: [LoginService, OverviewService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

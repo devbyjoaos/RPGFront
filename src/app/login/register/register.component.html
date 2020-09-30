@@ -1,0 +1,43 @@
+<div style="background-image: url(https://i.imgur.com/P7TgD2J.jpg) ; height: 100%; display: flex; align-items: center; justify-content: center;">
+  <mat-card style="background-color: white;">
+    <mat-card-title style="opacity: 1 !important; text-align: center; margin-bottom: 10px; color: coral;">Registrar Conta</mat-card-title>
+    <mat-card-content style="opacity: 1 !important; color: black;">
+    <form>
+      <div class="row" style="justify-content: center; display: flex;">
+    <mat-form-field appearance="outline" class="col-4">
+        <mat-label style="justify-content: center; display: flex;">Endereço de e-mail</mat-label>
+        <input matInput style="text-align: center;" [(ngModel)]="registerDto.email" name="email">
+    </mat-form-field>
+  </div>
+  <div class="row" style="justify-content: center; display: flex;">
+    <mat-form-field appearance="outline" class="col-4">
+        <mat-label style="justify-content: center; display: flex;">Nome</mat-label>
+        <input matInput style="text-align: center;" [(ngModel)]="registerDto.name" name="email">
+    </mat-form-field>
+  </div>
+  <div class="row" style="justify-content: center; display: flex;">
+    <mat-form-field appearance="outline" class="col-4">
+        <mat-label style="justify-content: center; display: flex;">Apelido</mat-label>
+        <input matInput style="text-align: center;" [(ngModel)]="registerDto.nickname" name="email">
+    </mat-form-field>
+  </div>
+  <div class="row" style="justify-content: center; display: flex;">
+    <mat-form-field appearance="outline" class="col-4" floatLabel="never">
+        <mat-label style="justify-content: center; display: flex;">Senha</mat-label>
+        <input matInput type="password" style="text-align: center;" [(ngModel)]="registerDto.password" name="email">
+    </mat-form-field>
+  </div>
+  <div class="row" style="justify-content: center; display: flex;">
+    <mat-form-field appearance="outline" class="col-4" floatLabel="never">
+        <mat-label style="justify-content: center; display: flex;">Repetir Senha</mat-label>
+        <input matInput type="password" style="text-align: center;" [(ngModel)]="repeatPassword" name="email">
+    </mat-form-field>
+  </div>
+  </form>
+  <div class="row" style="display: flex; justify-content: center;">
+  <button mat-raised-button (click)="voltar()" >Voltar</button>
+  <button mat-raised-button color="warn" style="margin-left: 15px;" (click)="registerNewUser()" >Registrar</button>
+</div>
+</mat-card-content>
+  </mat-card>
+</div>

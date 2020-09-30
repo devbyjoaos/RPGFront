@@ -1,11 +1,11 @@
-import { DaleComponent } from './dale.component';
+import { OverviewComponent } from './overview.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
     path: '',
-    component: DaleComponent,
+    component: OverviewComponent,
   }
 ];
 
